@@ -98,25 +98,25 @@ This document outlines specific tasks for building the "YouTube Transcript Idea 
 ### 2.1 YouTubeFetcher (`src/youtube_fetcher.py`)
 
 #### 2.1.1 Initialization
-- [ ] Implement `__init__`:
+- [x] Implement `__init__`:
   - Initialize `googleapiclient.discovery` for YouTube Data API
   - Initialize `youtube_transcript_api` client
 
 #### 2.1.2 Video Retrieval
-- [ ] Implement `get_playlist_video_ids(self, playlist_id: str) -> list[str]`:
+- [x] Implement `get_playlist_video_ids(self, playlist_id: str) -> list[str]`:
   - Use YouTube Data API to fetch video IDs from the given playlist
   - Handle pagination to retrieve all videos
   - Log progress and completion
 
 #### 2.1.3 Transcript Management
-- [ ] Implement `fetch_transcript(self, video_id: str) -> dict`:
+- [x] Implement `fetch_transcript(self, video_id: str) -> dict`:
   - Use `youtube-transcript-api` to fetch the transcript
   - Include try-except blocks to handle `NoTranscriptFound` or other API errors
   - Return a dictionary with `text`, `language`, and `status` (available, unavailable, error)
   - Log warnings for unavailable transcripts
 
 #### 2.1.4 Google Docs Integration
-- [ ] Implement `store_raw_transcript_in_google_docs(self, video_id: str, transcript_text: str) -> str`:
+- [x] Implement `store_raw_transcript_in_google_docs(self, video_id: str, transcript_text: str) -> str`:
   - Authenticate with Google Drive/Docs API using credentials
   - Create a new Google Doc with the transcript text
   - Set appropriate permissions for the document
