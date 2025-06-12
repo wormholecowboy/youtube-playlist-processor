@@ -1,0 +1,10 @@
+python-dotenv
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2
+youtube-transcript-api
+supabase
+requests
+jinja2
+pydantic
+pydantic-ai
