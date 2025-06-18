@@ -25,11 +25,7 @@ def main():
     
     # Example YouTube playlist URLs that would be useful for idea extraction
     example_playlists = [
-        "https://www.youtube.com/playlist?list=PLOGi5-fAu8bEIxdDkzfBdpSzKcLBZ8JFr",  # TED Talks - Technology
-        "https://www.youtube.com/playlist?list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb",  # MIT OpenCourseWare - Computer Science
-        "https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU",  # Stanford CS229 - Machine Learning
-        "https://www.youtube.com/playlist?list=PLQ-uHSnFig5OMuEYI4rnNz08BIHxhxdHG",  # Y Combinator Startup School
-        "https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab",  # 3Blue1Brown - Mathematics
+        "https://www.youtube.com/playlist?list=PLgBzZN2MBL00NGEQqQ_ORvigykKJJCIBm"
     ]
     
     def extract_playlist_id(url: str) -> str:
