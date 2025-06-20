@@ -81,39 +81,28 @@ class YouTubeFetcher:
             - status: 'available', 'unavailable', or 'error'
         """
         try:
-            # Get available transcripts
-            transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
+            # Use the new API - try English first, then any available language
+            ytt_api = YouTubeTranscriptApi()
             
-            # Try to get English transcript first, then any available
-            transcript = None
-            language = None
-            
+            # Try to fetch English transcript first
             try:
-                # Prefer English transcript
-                transcript = transcript_list.find_transcript(['en'])
+                fetched_transcript = ytt_api.fetch(video_id, languages=['en'])
                 language = 'en'
             except NoTranscriptFound:
-                # Fall back to any available transcript
+                # Fall back to any available language
                 try:
-                    available_transcripts = list(transcript_list)
-                    if available_transcripts:
-                        transcript = available_transcripts[0]
-                        language = transcript.language_code
+                    fetched_transcript = ytt_api.fetch(video_id)
+                    language = fetched_transcript.language_code
                 except Exception:
-                    pass
+                    logger.warning(f"No transcript found for video {video_id}")
+                    return {
+                        'text': '',
+                        'language': None,
+                        'status': 'unavailable'
+                    }
             
-            if transcript is None:
-                logger.warning(f"No transcript found for video {video_id}")
-                return {
-                    'text': '',
-                    'language': None,
-                    'status': 'unavailable'
-                }
-            
-            # Fetch the actual transcript
-            transcript_data = transcript.fetch()
-            
-            # Combine all transcript segments into full text
+            # Convert FetchedTranscript to raw data and combine text
+            transcript_data = fetched_transcript.to_raw_data()
             full_text = ' '.join([entry['text'] for entry in transcript_data])
             
             logger.info(f"Successfully fetched transcript for video {video_id} in language {language}")
