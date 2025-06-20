@@ -126,30 +126,30 @@ This document outlines specific tasks for building the "YouTube Transcript Idea 
 ### 2.2 DataManager (`src/data_manager.py`)
 
 #### 2.2.1 Initialization
-- [ ] Implement `__init__`:
+- [x] Implement `__init__`:
   - Initialize the Supabase client using `Config.SUPABASE_URL` and `Config.SUPABASE_KEY`
 
 #### 2.2.2 Video Metadata Management
-- [ ] Implement `save_video_metadata(self, video_id: str, title: str, url: str, playlist_id: str, google_doc_link: str)`:
+- [x] Implement `save_video_metadata(self, video_id: str, title: str, url: str, playlist_id: str, google_doc_link: str)`:
   - Perform an upsert operation into the `youtube_videos` table
   - Fields: `id`, `playlist_id`, `title`, `url`, `transcript_doc_id`, `created_at` (set once), `last_processed_at` (initially null or timestamp)
 
 #### 2.2.3 Video Processing
-- [ ] Implement `get_unprocessed_videos(threshold_days: int = 7) -> list[dict]`:
+- [x] Implement `get_unprocessed_videos(threshold_days: int = 7) -> list[dict]`:
   - Query `youtube_videos` for videos where `last_processed_at` is null or older than threshold
   - Return list of video records
 
 #### 2.2.4 Idea Management
-- [ ] Implement `save_extracted_idea(video_id: str, idea: dict) -> None`:
+- [x] Implement `save_extracted_idea(video_id: str, idea: dict) -> None`:
   - Insert idea dictionary into `extracted_ideas` table
   - Ensure schema matches: `title`, `summary`, `keywords`, `confidence_score`
   - Link to `video_id` via foreign key
 
-- [ ] Implement `get_ideas_from_last_week() -> list[dict]`:
+- [x] Implement `get_ideas_from_last_week() -> list[dict]`:
   - Query `extracted_ideas` for entries from the past week
   - Return list of idea dictionaries
 
-- [ ] Implement `update_video_processed_status(video_id: str) -> None`:
+- [x] Implement `update_video_processed_status(video_id: str) -> None`:
   - Update `last_processed_at` to current UTC timestamp
   - Log the update
 
@@ -354,7 +354,7 @@ This document outlines specific tasks for building the "YouTube Transcript Idea 
 ## 5. Database Schema
 
 ### 5.1 Setup Script
-- [ ] Create `scripts/setup_db.py`:
+- [x] Create `scripts/setup_db.py`:
   ```python
   import os
   from supabase import create_client, Client
